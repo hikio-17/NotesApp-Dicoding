@@ -13,12 +13,15 @@ class UploadsHandler {
       const { headers } = request.payload.data.hapi;
       this._validator.validateImageHeaders(headers);
       const { data } = request.payload;
+
       const fileLocation = await this._service.writeFile(data, data.hapi);
 
       const response = h.response({
         status: 'success',
         data: {
           fileLocation: `http://${process.env.HOST}:${process.env.PORT}/upload/images/${fileLocation}`,
+          // S3
+          // fileLocation,
         },
       });
       response.code(201);

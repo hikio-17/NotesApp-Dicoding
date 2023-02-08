@@ -38,12 +38,18 @@ const uploads = require('./api/uploads');
 const StorageService = require('./services/storage/StorageService');
 const UploadsValidator = require('./validator/uploads');
 
+// S3
+// const StorageService = require('./services/S3/StorageSevice');
+
 const init = async () => {
   const collaborationsService = new CollaborationsService();
   const notesService = new NotesService(collaborationsService);
   const usersService = new UsersService();
   const authenticationsService = new AuthenticationsService();
   const strotageService = new StorageService(path.resolve(__dirname, 'api/uploads/file/images'));
+
+  // S3
+  // const strotageService = new strotageService();
 
   const server = Hapi.server({
     port: process.env.PORT,
